@@ -1332,6 +1332,7 @@ async def on_command_error(ctx, error):
 
 # ----------------- Run -----------------
 if __name__ == "__main__":
-    token = os.getenv('DISCORD_BOT_TOKEN') or 'MTQzODg0MTA1NDI4NjU3NzgxNQ.G7kyrJ.O7K6srz4Q_i9BrjqDqfMnvgMdSv4T6KG0mIy0c'
+    token = os.getenv('DISCORD_BOT_TOKEN') or ''
     bot.run(token)
+
 
