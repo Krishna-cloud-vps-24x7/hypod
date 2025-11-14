@@ -30,7 +30,7 @@ intents.members = True
 bot = commands.Bot(command_prefix='.', intents=intents, help_command=None)
 
 # Main admin user ID
-MAIN_ADMIN_ID = 1133055533318946837
+MAIN_ADMIN_ID = 1061287786755395585
 
 # VPS User Role ID
 VPS_USER_ROLE_ID = None
@@ -1332,5 +1332,6 @@ async def on_command_error(ctx, error):
 
 # ----------------- Run -----------------
 if __name__ == "__main__":
-    token = os.getenv('DISCORD_BOT_TOKEN') or 'replace-this-with-your-token'
+    token = os.getenv('DISCORD_BOT_TOKEN') or 'MTQzODg0MTA1NDI4NjU3NzgxNQ.G7kyrJ.O7K6srz4Q_i9BrjqDqfMnvgMdSv4T6KG0mIy0c'
     bot.run(token)
+
