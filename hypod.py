@@ -102,12 +102,12 @@ def is_main_admin():
 # ----------------- Embeds -----------------
 def create_embed(title, description="", color=0x1a1a1a, fields=None):
     embed = discord.Embed(title=f"▌ {title}", description=description, color=color)
-    embed.set_thumbnail(url="https://i.ibb.co/qhQxkbm/fc27d6b324431b73e38c600ecb538f09.gif")
+    embed.set_thumbnail(url="https://i.postimg.cc/XYYnZGG5/trashed-1765164388-image-3.jpg")
     if fields:
         for field in fields:
             embed.add_field(name=f"▸ {field['name']}", value=field['value'], inline=field.get('inline', False))
-    embed.set_footer(text=f"Hycroe Node V4 VPS Manager • {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
-                     icon_url="https://i.ibb.co/qhQxkbm/fc27d6b324431b73e38c600ecb538f09.gif")
+    embed.set_footer(text=f"KEXSON HOSTS V1 • {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
+                     icon_url="https://i.postimg.cc/XYYnZGG5/trashed-1765164388-image-3.jpg")
     return embed
 
 def create_success_embed(title, description=""):
@@ -198,7 +198,7 @@ async def set_root_disk_size(container_name: str, size_gb: int):
        This assumes Linux inside container uses /dev/sda and ext4. Debian images usually fit."""
     try:
         # Set root device size (quota) on the host
-        await execute_lxc(f"lxc config device override {container_name} root size={size_gb}GB")
+        await execute_lxc(f"lxc config device set {container_name} root size={size_gb}GB")
     except Exception as e:
         logger.exception(f"Failed to override root device size for {container_name}: {e}")
         raise
@@ -221,7 +221,7 @@ async def core_create_container(container_name: str, ram_gb: int, cpu: int, stor
     """Create a container on given pool, apply RAM/CPU, then set root disk size."""
     ram_mb = int(ram_gb) * 1024
     # Launch Debian 12 container
-    await execute_lxc(f"lxc launch debian:12 {container_name} --config limits.memory={ram_mb}MB --config limits.cpu={cpu} -s {storage_pool}")
+    await execute_lxc(f"lxc launch images:debian/12 {container_name} --config limits.memory={ram_mb}MB --config limits.cpu={cpu} -s {storage_pool}")
     # Try to set root disk size and grow filesystem inside container
     await set_root_disk_size(container_name, storage_gb)
 
@@ -644,7 +644,7 @@ async def buy_credits(ctx):
 @bot.command(name='plans')
 async def show_plans(ctx):
     """Show available VPS plans"""
-    embed = create_embed("💎 VPS Plans - Hycroe Node V4", "Choose your perfect VPS plan:", 0x1a1a1a)
+    embed = create_embed("💎 VPS Plans - KEXSON HOSTS V1", "Choose your perfect VPS plan:", 0x1a1a1a)
 
     plan_fields = [
         {"name": "🚀 Starter", "value": f"**RAM:** {PLANS['Starter']['ram']}\n**CPU:** {PLANS['Starter']['cpu']} Core\n**Storage:** {PLANS['Starter']['storage']} GB\n━━━━━━━━━━━━━━\n**Intel:** ₹{PRICES['Starter']['Intel']} | **AMD:** ₹{PRICES['Starter']['AMD']}", "inline": False},
@@ -1257,7 +1257,7 @@ async def show_help(ctx):
     is_user_admin = user_id == str(MAIN_ADMIN_ID) or user_id in admin_data.get("admins", [])
     is_user_main_admin = user_id == str(MAIN_ADMIN_ID)
 
-    embed = create_embed("📚 Command Help", "Hycroe Node V4 VPS Manager Commands:", 0x1a1a1a)
+    embed = create_embed("📚 Command Help", "KEXSON HOSTS V1 Commands:", 0x1a1a1a)
 
     user_commands = [
         (".plans", "View available VPS plans"),
@@ -1306,7 +1306,7 @@ async def show_help(ctx):
         main_admin_commands_text = "\n".join([f"**{cmd}** - {desc}" for cmd, desc in main_admin_commands])
         embed.add_field(name="👑 Main Admin Commands", value=main_admin_commands_text, inline=False)
 
-    embed.set_footer(text="Hycroe Node V4 VPS Manager • No auto-shutdown • Clean performance")
+    embed.set_footer(text="KEXSON HOSTS V1 • No auto-shutdown • Clean performance")
     await ctx.send(embed=embed)
 
 # ----------------- Startup -----------------
@@ -1334,5 +1334,6 @@ async def on_command_error(ctx, error):
 if __name__ == "__main__":
     token = os.getenv('DISCORD_BOT_TOKEN') or ''
     bot.run(token)
+
 
 
