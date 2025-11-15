@@ -11,6 +11,9 @@ import os
 from typing import Optional, List, Dict, Any
 import threading
 import time
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -1334,6 +1337,7 @@ async def on_command_error(ctx, error):
 if __name__ == "__main__":
     token = os.getenv('DISCORD_BOT_TOKEN') or ''
     bot.run(token)
+
 
 
 
