@@ -33,10 +33,10 @@ intents.members = True
 bot = commands.Bot(command_prefix='.', intents=intents, help_command=None)
 
 # Main admin user ID
-MAIN_ADMIN_ID = 1061287786755395585
+MAIN_ADMIN_ID = 1421860082894766183
 
 # VPS User Role ID
-VPS_USER_ROLE_ID = None
+VPS_USER_ROLE_ID = 1439255320395513977
 
 # CPU monitoring settings
 CPU_THRESHOLD = 90  # Percentage at which to stop all VPS
